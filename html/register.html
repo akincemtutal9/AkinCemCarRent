@@ -45,15 +45,15 @@
       
                       <div class="form-outline mb-4">
                         <label class="form-label" for="form3Example4cg">Password:</label>
-                        <input type="password" id="form3Example4cg" class="form-control form-control-lg" placeholder="password"/>
+                        <input name="password" type="password" id="form3Example4cg" class="form-control form-control-lg" placeholder="password"/>
                       </div>
       
                       <div class="form-outline mb-4">
                         <label class="form-label" for="form3Example4cdg">Repeat your password</label>
-                        <input type="password" id="form3Example4cdg" class="form-control form-control-lg" placeholder="password"/>
+                        <input name="confirm" type="password" onchange="onChange()" id="form3Example4cdg" class="form-control form-control-lg" placeholder="password"/>
                       </div>
                       <div class="d-flex justify-content-center">
-                        <button type="button" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Register</button>
+                        <button type="submit" class="btn btn-success btn-block btn-lg gradient-custom-6 text-body">Register</button>
                       </div>
       
                       <p class="text-center text-muted mt-5 mb-0">Have already an account? <a href="login.html" class="fw-bold text-body"><u>Login here</u></a></p>
@@ -66,6 +66,18 @@
             </div>
           </div>
         </div>
-      </section>
-</body>
+        </section>
+        <script>
+        function onChange() {
+        const password = document.querySelector('input[name=password]');
+        const confirm = document.querySelector('input[name=confirm]');
+         if (confirm.value === password.value) {
+        confirm.setCustomValidity('');
+        } else {
+         confirm.setCustomValidity('Passwords do not match');
+  }
+}
+
+</script>
+    </body>
 </html>
