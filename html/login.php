@@ -13,13 +13,26 @@
 </head>
 <body>
   
+  <?php
+if(!empty($_POST['username']) and !empty($_POST['password'])){
+  $username = $_POST['username'];
+  $password = $_POST['password'];
+if($username=="akincemtutal" and $password == "1"){
+    header("Location:/CarRent/AkinCemCarRent/html/index.html?username=$username");
+    die();
+}
+else{
+    echo "WRONG!";
+}
+}
+?>
   <div class="container">
     <div class="row">
       <div class="col-md-6 offset-md-3">
         <h2 class="text-center text-dark mt-5">Login Form</h2>    
         <div class="card my-5">
 
-          <form class="card-body cardbody-color p-lg-5">
+          <form class="card-body cardbody-color p-lg-5" action="<?php echo $_SERVER["PHP_SELF"]?>" method="POST">
 
             <div class="text-center">
               <img src="../images/logo/logo.jpg" class="img-fluid profile-image-pic img-thumbnail rounded-circle my-lg-4"
@@ -27,14 +40,14 @@
             </div>
 
             <div class="mb-3">
-              <input type="text" class="form-control" id="Username" aria-describedby="emailHelp"
-                placeholder="User Name">
+              <input type="text" class="form-control" name= "username" id="Username" aria-describedby="emailHelp"
+                placeholder="username">
             </div>
             <div class="mb-3">
-              <input type="password" class="form-control" id="password" placeholder="password">
+              <input type="password" class="form-control" name="password" id="password" placeholder="password">
             </div>
             <div class="d-flex justify-content-center">
-              <button type="button" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Register</button>
+              <button type="submit" value ="Confirm" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Login</button>
             </div>
             <div id="emailHelp" class="form-text text-center mb-5 text-dark">Not Registered? 
             <a href="register.html" class="text-dark fw-bold"> Create an Account</a>
