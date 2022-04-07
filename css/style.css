@@ -6,3 +6,59 @@ padding: 0px;
 .container{
     height: 600px;
 }
+.button-container {
+    position: relative;
+    /*text-align: center;*/
+    padding: 0;
+    overflow:hidden;
+      display:flex; /*Code Added */
+      justify-content:flex-end;
+     margin-left:auto;
+    /*float: center;*/
+      width:160px;
+    }
+
+    .button-container img{width:50px; height:50px; display:block; border-radius:50%} /* Code changed */
+
+
+    /* The container <div> - needed to position the dropdown content */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    /* Dropdown Content (Hidden by Default) */
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: white;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+
+    /* Links inside the dropdown */
+    .dropdown-content a {
+      font-weight: 600; /*Semi-Bold = 600*/ /*Bold = 700*/
+      font-family:"Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      color:#666666;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      right: 4px;
+      left: auto;
+    }
+
+    /* Change color of dropdown links on hover */
+    .dropdown-content a:hover {
+        color:#F16852;}
+
+    /* Show the dropdown menu on hover */
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    /* Change the background color of the dropdown button when the dropdown content is shown */
+    .dropdown:hover .dropbtn {
+      background-color: #3e8e41;
+    }
