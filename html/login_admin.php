@@ -23,7 +23,7 @@ if(!empty($_POST['username']) and !empty($_POST['password'])){
   $username = $_POST['username'];
   $password = $_POST['password'];
 if($username=="akincemtutal" and $password == "1"){
-    header("Location:/CarRent/AkinCemCarRent/html/index.html?username=$username");
+    header("Location:/CarRent/AkinCemCarRent/html/dashboard.php?username=$username");
     die();
 }
 else{
