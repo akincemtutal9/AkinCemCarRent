@@ -22,10 +22,20 @@
                 <a href="#" class="list-group-item list-group-item-action bg-transparent second-text active"><i
                         class="fas fa-tachometer-alt me-2"></i>Dashboard</a>
                 <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
-                        class="fas fa-chart-line me-2"></i>Analytics</a>
+                        class="fas fa-car me-2"></i>Cars</a>
                 <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
-                        class="fas fa-paperclip me-2"></i>Reports</a>
-                <a href="../html/login.php" class="list-group-item list-group-item-action bg-transparent text-danger fw-bold"><i
+                        class="fas fa-user me-2"></i>Customers</a>
+                <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                        class="fas fa-ticket-alt me-2"></i>Rents</a>
+                <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                        class="fas fa-paperclip me-2"></i>Reports</a>        
+                <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                            class="fas fa-star me-2"></i>Reviews</a>
+                <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                            class="fas fa-message-dots me-2"></i>Messages</a>        
+                <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                            class="fas fa-money-bill me-2"></i>Price</a>
+                            <a href="../html/login_admin.php" class="list-group-item list-group-item-action bg-transparent text-danger fw-bold"><i
                         class="fas fa-power-off me-2"></i>Logout</a>
             </div>
         </div>
@@ -58,7 +68,7 @@
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="#">Profile</a></li>
                                 <li><a class="dropdown-item" href="#">Settings</a></li>
-                                <li><a class="dropdown-item" href="../html/login.php">Logout</a></li>
+                                <li><a class="dropdown-item" href="../html/login_admin.php">Logout</a></li>
                             </ul>
                         </li>
                     </ul>
