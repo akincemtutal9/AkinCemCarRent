@@ -16,21 +16,31 @@
         }
   </style>
 </head>
-<body>
-  
-  <?php
-if(!empty($_POST['username']) and !empty($_POST['password'])){
-  $username = $_POST['username'];
-  $password = $_POST['password'];
-if($username=="akincemtutal" and $password == "1"){
-    header("Location:/CarRent/AkinCemCarRent/html/index.html?username=$username");
-    die();
-}
-else{
-    echo "WRONG!";
-}
-}
+<body> 
+<?php
+require_once('connection.php');
+include('connection.php');
+if($_SERVER["REQUEST_METHOD"]=="POST"){
+  $myusername = mysqli_real_escape_string($akincar,$_POST['username']);
+  $mypassword = mysqli_real_escape_string($akincar,$_POST['password']);
+
+  $sql = "SELECT email FROM users WHERE username ='$myusername' AND password ='$mypassword'";
+  $result = mysqli_query($akincar,$sql);
+      $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
+      $active = $row['active'];
+
+      $count = mysqli_num_rows($result);
+      if($count == 1) {
+        session_register("$myusername");
+        $_SESSION['login_user'] = $myusername;
+        
+        header("location: welcome.php");
+     }else {
+        $error = "Your Login Name or Password is invalid";
+     }
+  }
 ?>
+
   <div class="container">
     <div class="row">
       <div class="col-md-6 offset-md-3">
@@ -55,7 +65,7 @@ else{
               <button style="width: 100%;" type="submit" value ="Confirm" class="blackButton">Login</button>
             </div>
             <div id="emailHelp" class="form-text text-center mb-5 text-dark">Not Registered? 
-            <a href="register.html" class="text-dark fw-bold"> Create an Account</a>
+            <a href="register.php" class="text-dark fw-bold"> Create an Account</a>
             </div>
           </form>
         </div>

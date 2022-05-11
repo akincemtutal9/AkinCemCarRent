@@ -1,3 +1,65 @@
+<?php
+require_once('connection.php');
+?>
+<?php
+// SQL tablosundaki attributelari tanimla
+
+$name = "";
+$surname = "";
+$username = "";
+$email = "";
+$password = "";
+$errors = array();
+
+  
+//Sign up pagenin isseti
+if(isset($_POST['register'])) {
+  echo "oldu";
+    $name = strip_tags(mysqli_real_escape_string($conn,$_POST['name']));
+    $surname = strip_tags(mysqli_real_escape_string($conn,$_POST['surname']));
+    $username = strip_tags(mysqli_real_escape_string($conn,$_POST['username']));
+    $email = strip_tags(mysqli_real_escape_string($conn,$_POST['email']));
+    $password = strip_tags(mysqli_real_escape_string($conn,$_POST['password']));
+    
+    
+    // bossa error yolla bolumu
+    if (empty($name)) {
+      array_push($errors, "Firstname is requried!");
+    }
+    if (empty($surname)) {
+      array_push($errors, "Surname is requried!");
+    }
+    if (empty($username)) {
+      array_push($errors, "Username is ");
+    }
+    if (empty($email)) {
+      array_push($errors, "Email is requried!");
+    }
+    if (empty($password)) {
+      array_push($errors, "Password is requried!");
+    }
+    
+    // Error yoksa tabloya pushla insert et
+    if (count($errors) == 0) {
+      
+      // Sifreyi md5 formatina getir tabloda admin gormesin
+        $passwordmd5 = md5($password);
+      $sql = "INSERT INTO users (name, surname, username , email , password)
+        VALUES ('$name','$surname','$username','$email','$passwordmd5')";
+      //mysqli_query($conn,$sql);
+      if ($conn->query($sql) === TRUE) {
+        echo "New record created successfully";
+      } 
+      else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+      }
+      
+      header('Location: login.php');
+    }
+  }
+    
+  
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,29 +85,29 @@
                   <div class="card-body p-5">
                     <h2 class="text-uppercase text-center mb-5">Create an account</h2>
       
-                    <form>
+                    <form name="register" method="POST" action="register.php">
                         <div class="text-center">
                             <img src="../images/logo/logo.jpg" class="img-fluid profile-image-pic img-thumbnail rounded-circle my-lg-4"
                               width="200px" alt="profile">
                         </div>
                       <div class="form-outline mb-4">
                         <label class="form-label" for="form3Example1cg">Name:</label>
-                        <input type="text" id="form3Example1cg" class="form-control form-control-lg" placeholder="name" />
+                        <input type="text" name="name" id="form3Example1cg" class="form-control form-control-lg" placeholder="name" />
                       </div>
                       
                       <div class="form-outline mb-4">
                         <label class="form-label" for="form3Example1cg">Surname:</label>
-                        <input type="text" id="form3Example1cg" class="form-control form-control-lg" placeholder="surname"/>                       
+                        <input type="text" name="surname" id="form3Example1cg" class="form-control form-control-lg" placeholder="surname"/>                       
                       </div>
 
                       <div class="form-outline mb-4">
                         <label class="form-label" for="form3Example1cg">Username:</label>
-                        <input type="text" id="form3Example1cg" class="form-control form-control-lg" placeholder="username"/>
+                        <input type="text" name="username" id="form3Example1cg" class="form-control form-control-lg" placeholder="username"/>
                       </div>
       
                       <div class="form-outline mb-4">
-                        <label class="form-label" for="form3Example3cg">Email:</label>
-                        <input type="email" id="form3Example3cg" class="form-control form-control-lg" placeholder="email"/>
+                        <label class="form-label"  for="form3Example3cg">Email:</label>
+                        <input type="email" id="form3Example3cg"  name="email" class="form-control form-control-lg" placeholder="email"/>
                       </div>
       
                       <div class="form-outline mb-4">
@@ -55,16 +117,15 @@
       
                       <div class="form-outline mb-4">
                         <label class="form-label" for="form3Example4cdg">Repeat your password</label>
-                        <input name="confirm" type="password" onchange="onChange()" id="form3Example4cdg" class="form-control form-control-lg" placeholder="password"/>
+                        <input name="confirmPassword" type="password" onchange="onChange()" id="form3Example4cdg" class="form-control form-control-lg" placeholder="password"/>
                       </div>
                       <div class="d-flex justify-content-center">
-                        <button style="width: 100%;" type="submit" class="blackButton">Register</button>
+                        <button style="width: 100%;" name="register"type="submit" class="blackButton">Register</button>
                       </div>
       
                       <p class="text-center text-muted mt-5 mb-0">Have already an account? <a href="../html/login.php" class="fw-bold text-body"><u>Login here</u></a></p>
       
-                    </form>
-      
+                    </form>      
                   </div>
                 </div>
               </div>
