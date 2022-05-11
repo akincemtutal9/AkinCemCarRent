@@ -1,3 +1,10 @@
+<?php 
+session_start();
+if(isset($_SESSION['username'])){
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -69,12 +76,29 @@
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li><a class="dropdown-item" href="../html/login.php">Sign in</a></li>
                 <li><a class="dropdown-item" href="../html/register.html">Sign up</a></li>
+                <li><a class="dropdown-item" href="../html/logout.php">logout</a></li>
+              
               </ul>
+              <li class="nav-item">
+              <p class="nav-link" href="../html/contuct-us.html">Welcome, <?php echo $_SESSION['username']; ?></p>
             </li>
-        </div>
+            </li>
+            <li>
+            
+            </li>
+          </div>
       </div>
     </nav>
   </header>
+<?php
+}
+else{
+  header("Location: login.php");
+  exit();
+}
+
+
+?>
 
   <!--Rent Box-->
   <div class="rentBoxContainer">
@@ -86,8 +110,6 @@
           <label class="form-label" for="rentDay">Rent Day:</label>
           <input type="date" class="form-control" id="rentDay" name="rentDay">
         </div>
-
-
 
         <div class="col-md-4 mb-2">
           <label class="form-label" for="town">Type</label>
@@ -105,9 +127,6 @@
         <div class="blackButtonContainer">
           <div class="center blackButton">Rent a Car</div>
         </div>
-
-
-
       </form>
 
     </div>
@@ -254,7 +273,6 @@
   </footer>
   <script>
     let items = document.querySelectorAll('.carousel .carousel-item')
-
     items.forEach((el) => {
       // number of slides per carousel-item
       const minPerSlide = 4
@@ -271,5 +289,4 @@
     })
   </script>
 </body>
-
 </html>

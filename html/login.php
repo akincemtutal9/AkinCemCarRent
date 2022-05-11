@@ -1,3 +1,7 @@
+<?php 
+include "connection.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,34 +16,11 @@
   <title>Login</title>
   <style>
         body{
-            background-image: url(../images/Photos/car\ for\ background.jpg);
+          background-image: url(../images/Photos/car\ for\ background.jpg);
         }
   </style>
 </head>
 <body> 
-<?php
-require_once('connection.php');
-include('connection.php');
-if($_SERVER["REQUEST_METHOD"]=="POST"){
-  $myusername = mysqli_real_escape_string($akincar,$_POST['username']);
-  $mypassword = mysqli_real_escape_string($akincar,$_POST['password']);
-
-  $sql = "SELECT email FROM users WHERE username ='$myusername' AND password ='$mypassword'";
-  $result = mysqli_query($akincar,$sql);
-      $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
-      $active = $row['active'];
-
-      $count = mysqli_num_rows($result);
-      if($count == 1) {
-        session_register("$myusername");
-        $_SESSION['login_user'] = $myusername;
-        
-        header("location: welcome.php");
-     }else {
-        $error = "Your Login Name or Password is invalid";
-     }
-  }
-?>
 
   <div class="container">
     <div class="row">
@@ -47,15 +28,19 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
         <h2 class="text-center text-dark mt-5">Login Form</h2>    
         <div class="card my-5">
 
-          <form class="card-body cardbody-color p-lg-5" action="<?php echo $_SERVER["PHP_SELF"]?>" method="POST">
+          <form class="card-body cardbody-color p-lg-5" action="LoginSystem.php" method="POST">
 
             <div class="text-center">
               <img src="../images/logo/logo.jpg" class="img-fluid profile-image-pic img-thumbnail rounded-circle my-lg-4"
-                width="200px" alt="profile">
+                width="200px" alt="profile"></img>
             </div>
-
+            
+            <?php if(isset($_GET['error'])) { ?>
+            <p class="error"> <?php echo $_GET['error']; ?></p> 
+            <?php } ?>
+          
             <div class="mb-3">
-              <input type="text" class="form-control" name= "username" id="Username" aria-describedby="emailHelp"
+              <input type="text" class="form-control" name="username" id="Username" aria-describedby="emailHelp"
                 placeholder="username">
             </div>
             <div class="mb-3">
